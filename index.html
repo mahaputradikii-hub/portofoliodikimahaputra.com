@@ -1,0 +1,2737 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diki Mahaputra — Portofolio</title>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.14/dist/lenis.min.css">
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --paper: #EFE3C9;
+      --paper-alt: #E6D5B3;
+      --paper-dark: #D6C096;
+      --ink: #3A2E20;
+      --ink-soft: #6E5F47;
+      --red: #B85C38;
+      --teal: #5F7A6B;
+      --amber: #C99A3F;
+      --line: rgba(58, 46, 32, 0.18);
+      --shadow: 0 8px 20px rgba(58, 46, 32, 0.16);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+      /* Lenis menangani smooth scroll */
+    }
+
+    /* Lenis smooth scroll fix */
+    html.lenis,
+    html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    /* ensure anchored sections aren't hidden behind fixed header */
+    section[id] {
+      scroll-margin-top: 80px;
+    }
+
+    body {
+      background:
+        repeating-linear-gradient(0deg, rgba(58, 46, 32, 0.018) 0px, rgba(58, 46, 32, 0.018) 1px, transparent 1px, transparent 4px),
+        repeating-linear-gradient(90deg, rgba(58, 46, 32, 0.015) 0px, rgba(58, 46, 32, 0.015) 1px, transparent 1px, transparent 5px),
+        radial-gradient(circle at 50% 40%, #F3E7CE 0%, var(--paper) 55%, #E4D3AC 100%);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* aged paper grain + vignette overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 45%, rgba(255, 250, 235, 0.35) 0%, rgba(0, 0, 0, 0) 55%, rgba(58, 46, 32, 0.22) 100%),
+        repeating-linear-gradient(0deg, rgba(58, 46, 32, 0.03) 0px, rgba(58, 46, 32, 0.03) 1px, transparent 1px, transparent 3px),
+        repeating-linear-gradient(90deg, rgba(58, 46, 32, 0.02) 0px, rgba(58, 46, 32, 0.02) 1px, transparent 1px, transparent 4px),
+        radial-gradient(circle at 20% 15%, rgba(255, 246, 224, 0.5) 0%, transparent 60%),
+        radial-gradient(circle at 80% 85%, rgba(120, 90, 50, 0.12) 0%, transparent 55%);
+      mix-blend-mode: multiply;
+    }
+
+    /* ensure content sits above the fixed background layers */
+    .wrap,
+    header,
+    footer {
+      position: relative;
+      z-index: 2;
+    }
+
+    ::selection {
+      background: var(--amber);
+      color: var(--ink);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Anton', sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+
+    .mono {
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.02em;
+    }
+
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: var(--red);
+      display: inline-block;
+    }
+
+    /* riso offset text effect */
+    .offset-text {
+      position: relative;
+      display: inline-block;
+    }
+
+    .offset-text::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      color: var(--red);
+      opacity: 0.75;
+      z-index: -1;
+    }
+
+    .offset-text.teal::before {
+      color: var(--teal);
+    }
+
+    /* ---------- NAV ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    nav.wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .logo-mark .dot {
+      width: 10px;
+      height: 10px;
+      background: var(--red);
+      transform: rotate(45deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-size: 14px;
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* hamburger toggle (mobile) */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      border: 2px solid var(--ink);
+      background: transparent;
+      z-index: 110;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .nav-toggle.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--ink-soft);
+      transition: color .25s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: width .25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      border: 2px solid var(--ink);
+      padding: 8px 16px;
+      transition: all .25s ease;
+      border-radius: var(--radius-sm);
+    }
+
+    .nav-cta:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 110px;
+      padding-bottom: 80px;
+      position: relative;
+    }
+
+    .hero-tag-strip {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .pill {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      border: 1.5px solid var(--ink);
+      padding: 7px 14px;
+      background: var(--paper-alt);
+      border-radius: var(--radius-sm);
+    }
+
+    .pill.role {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    .hero-main {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .hero-name {
+      font-size: clamp(52px, 10vw, 118px);
+      line-height: 0.92;
+      color: var(--ink);
+    }
+
+    .hero-subtitle {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--red);
+      letter-spacing: 0.16em;
+    }
+
+    /* profile photo card (riso style) */
+    .profile-photo-card {
+      position: relative;
+      width: min(300px, 30vw);
+      flex-shrink: 0;
+      transform: rotate(2.5deg);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .profile-photo-card:hover {
+      transform: rotate(0deg) scale(1.03);
+    }
+
+    .profile-photo {
+      aspect-ratio: 1 / 1.1;
+      border: 3px solid var(--ink);
+      background-color: var(--paper-dark);
+      background-size: cover;
+      background-position: center;
+      box-shadow: 8px 8px 0 var(--ink);
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .profile-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 7px, rgba(27, 27, 25, 0.07) 8px),
+        linear-gradient(155deg, rgba(229, 72, 45, 0.14) 0%, rgba(255, 255, 255, 0) 45%, rgba(15, 110, 103, 0.16) 100%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .profile-badge {
+      position: absolute;
+      top: -14px;
+      left: -10px;
+      background: var(--red);
+      color: var(--paper);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      padding: 6px 12px;
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      transform: rotate(-3deg);
+      z-index: 2;
+      white-space: nowrap;
+      border-radius: var(--radius-sm);
+    }
+
+    .profile-caption {
+      position: absolute;
+      bottom: -12px;
+      right: -8px;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      padding: 5px 10px;
+      box-shadow: 3px 3px 0 var(--ink);
+      z-index: 2;
+      white-space: nowrap;
+      border-radius: var(--radius-sm);
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      margin-top: 44px;
+      flex-wrap: wrap;
+    }
+
+    .hero-desc {
+      max-width: 440px;
+      font-size: 17px;
+      color: var(--ink-soft);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      padding: 14px 26px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all .25s ease;
+      white-space: nowrap;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-solid {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .btn-solid:hover {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--ink);
+      border: 2px solid var(--ink);
+      margin-top: 64px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .stat-strip .stat {
+      background: var(--paper);
+      padding: 22px 20px;
+    }
+
+    .stat-strip .num {
+      font-family: 'Anton', sans-serif;
+      font-size: 30px;
+      color: var(--red);
+    }
+
+    .stat-strip .label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    /* ---------- SECTION GENERIC ---------- */
+    section {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      font-size: clamp(32px, 5vw, 50px);
+    }
+
+    .section-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- OVERLAPPING SECTIONS ---------- */
+    .ol {
+      position: relative;
+    }
+
+    .ol+.ol {
+      margin-top: -70px;
+      border-radius: 26px 26px 0 0;
+      box-shadow: 0 -14px 30px rgba(27, 27, 25, 0.18);
+    }
+
+    .ol .ol-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* tint color variants */
+    .tint-paper-dark {
+      background: var(--paper-dark);
+    }
+
+    .tint-ink {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .tint-red {
+      background: var(--red);
+      color: var(--paper);
+    }
+
+    .tint-teal {
+      background: var(--teal);
+      color: var(--paper);
+    }
+
+    .tint-amber {
+      background: var(--amber);
+      color: var(--ink);
+    }
+
+    /* text color helpers for dark/tinted sections */
+    .on-dark {
+      color: var(--paper);
+    }
+
+    .on-dark .eyebrow {
+      color: var(--amber);
+    }
+
+    .on-dark .eyebrow::before {
+      background: var(--amber);
+    }
+
+    .on-dark .section-num {
+      color: rgba(239, 233, 220, 0.7);
+    }
+
+    .on-dark .offset-text::before {
+      color: var(--amber);
+    }
+
+    /* readability fixes for text sitting directly on tinted backgrounds */
+    .on-dark .reel-list-head p {
+      color: rgba(239, 233, 220, 0.78);
+    }
+
+    .on-dark .edu-detail {
+      color: rgba(239, 233, 220, 0.82);
+    }
+
+    .on-dark .edu-date {
+      color: var(--amber);
+    }
+
+    .on-dark .edu-row {
+      border-color: rgba(239, 233, 220, 0.25);
+    }
+
+    .on-dark .skill-tag {
+      background: var(--paper);
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    /* keep cards readable on tinted backgrounds */
+    .ol .badge-card,
+    .ol .cb-card,
+    .ol .achieve-card {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .ol .badge-side {
+      background: var(--ink);
+    }
+
+    .ol .album-card {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .ol .content-item {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(239, 233, 220, 0.35);
+    }
+
+    .ol .content-item:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .ol .content-text .meta,
+    .ol .content-text .title {
+      color: var(--ink);
+    }
+
+    .ol .pass {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .ol .pass-strap {
+      background: repeating-linear-gradient(45deg, var(--red), var(--red) 10px, var(--amber) 10px, var(--amber) 20px);
+    }
+
+    /* ---------- OVERLAP RESPONSIVE ---------- */
+    @media (max-width: 560px) {
+      .ol+.ol {
+        margin-top: -30px;
+        border-radius: 18px 18px 0 0;
+      }
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about {
+      background: var(--paper);
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 70px;
+    }
+
+    .about-text p {
+      font-size: 17px;
+      color: var(--ink-soft);
+      margin-bottom: 18px;
+      max-width: 56ch;
+    }
+
+    .quickfacts {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      background: var(--paper);
+      border: 1.5px solid var(--ink);
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      border-radius: var(--radius-sm);
+    }
+
+    .fact-row span:first-child {
+      color: var(--ink-soft);
+    }
+
+    /* ---------- BADGE CARD (signature) ---------- */
+    .badge-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .badge-card {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      transition: transform .25s ease;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .badge-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    .badge-side {
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .badge-side .cat {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 4px 8px;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .cat-kerja {
+      background: var(--red);
+    }
+
+    .cat-organisasi {
+      background: var(--teal);
+    }
+
+    .badge-side .dates {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    .badge-punch {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--paper);
+    }
+
+    .badge-main {
+      padding: 22px 26px;
+    }
+
+    .badge-role {
+      font-family: 'Anton', sans-serif;
+      font-size: 19px;
+      letter-spacing: 0.01em;
+      margin-bottom: 4px;
+    }
+
+    .badge-org {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .badge-main ul {
+      padding-left: 18px;
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .badge-main li {
+      margin-bottom: 5px;
+    }
+
+    .mini-list-head {
+      margin-top: 60px;
+      margin-bottom: 20px;
+    }
+
+    .mini-list-head h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: 22px;
+    }
+
+    .mini-list-head p {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+
+    .mini-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mini-row {
+      display: grid;
+      grid-template-columns: 64px 1fr auto 130px;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .mini-row:first-child {
+      border-top: 1px solid var(--line);
+    }
+
+    .mini-year {
+      font-family: 'Space Mono', monospace;
+      color: var(--red);
+      font-size: 12px;
+    }
+
+    .mini-name {
+      font-family: 'Anton', sans-serif;
+      font-size: 15px;
+      letter-spacing: 0.01em;
+    }
+
+    .mini-role {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .mini-chip {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      padding: 5px 10px;
+      text-align: center;
+      justify-self: end;
+      white-space: nowrap;
+      border-radius: var(--radius-sm);
+    }
+
+    .chip-organisasi {
+      background: var(--teal);
+      color: var(--paper);
+    }
+
+    .chip-kepanitiaan {
+      background: var(--amber);
+      color: var(--ink);
+    }
+
+    /* ---------- MUSIC / KONTEN ---------- */
+    .music {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .music .eyebrow {
+      color: var(--teal);
+    }
+
+    .music .eyebrow::before {
+      background: var(--red);
+    }
+
+    .music-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .album-card {
+      background: var(--paper);
+      color: var(--ink);
+      border: 2px solid var(--paper);
+      padding: 26px;
+      position: relative;
+      border-radius: var(--radius);
+    }
+
+    .album-art {
+      aspect-ratio: 1/1;
+      background:
+        repeating-conic-gradient(var(--red) 0% 25%, var(--amber) 0% 50%);
+      background-size: 60% 60%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: var(--teal);
+      margin-bottom: 18px;
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .album-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 8px, rgba(0, 0, 0, 0.06) 9px);
+    }
+
+    .album-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 22px;
+    }
+
+    .album-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+
+    /* ---------- POLAROID GALLERY ---------- */
+    .polaroid-gallery {
+      margin-top: 60px;
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+
+    .polaroid-gallery .eyebrow {
+      color: var(--amber);
+    }
+
+    .polaroid-gallery .eyebrow::before {
+      background: var(--amber);
+    }
+
+    .polaroid-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .polaroid-card {
+      background: var(--paper);
+      padding: 16px 16px 44px 16px;
+      border: 2px solid var(--paper);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      border-radius: var(--radius);
+    }
+
+    .polaroid-card:nth-child(1) {
+      transform: rotate(-2deg);
+    }
+
+    .polaroid-card:nth-child(2) {
+      transform: rotate(1.5deg);
+    }
+
+    .polaroid-card:nth-child(3) {
+      transform: rotate(-1deg);
+    }
+
+    .polaroid-card:nth-child(4) {
+      transform: rotate(2.5deg);
+    }
+
+    .polaroid-card:hover {
+      transform: rotate(0deg) scale(1.05);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      z-index: 10;
+    }
+
+    .polaroid-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--teal);
+      border-radius: var(--radius-sm);
+    }
+
+    .polaroid-caption {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      text-align: center;
+      margin-top: 16px;
+      color: var(--ink-soft);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .polaroid-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .polaroid-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .polaroid-card {
+        padding: 10px 10px 34px 10px;
+      }
+
+      .polaroid-caption {
+        font-size: 10px;
+        margin-top: 12px;
+      }
+    }
+
+    .content-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .content-item {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      border: 1.5px solid rgba(27, 27, 25, 0.18);
+      background: rgba(255, 255, 255, 0.35);
+      padding: 16px;
+      transition: background .25s ease;
+      border-radius: var(--radius-sm);
+    }
+
+    .content-item:hover {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .content-thumb {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+      background: linear-gradient(150deg, var(--red), var(--amber));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+    }
+
+    .content-thumb::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 11px solid var(--ink);
+    }
+
+    .content-text .title {
+      font-family: 'Anton', sans-serif;
+      font-size: 15px;
+      letter-spacing: 0.01em;
+    }
+
+    .content-text .meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    /* Video cover items - click to play */
+    .video-cover-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-player {
+      display: none;
+      width: 100%;
+      max-height: 240px;
+      border: 1.5px solid rgba(239, 233, 220, 0.35);
+      border-top: none;
+      background: #000;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    }
+
+    .video-cover-item.playing .video-player {
+      display: block;
+    }
+
+    .video-cover-item.playing .content-item {
+      border-bottom: none;
+    }
+
+    .video-cover-item.playing .content-thumb::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border: none;
+      border-left: none;
+      background: transparent;
+    }
+
+    .video-cover-item.playing .content-thumb {
+      background: var(--teal) !important;
+    }
+
+    .video-cover-item.playing .content-thumb::after {
+      content: "▌▌";
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--paper);
+      font-family: 'Space Mono', monospace;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .own-song-label {
+      font-family: 'Anton', sans-serif;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      color: var(--amber);
+      text-transform: uppercase;
+      padding: 8px 0 2px 0;
+    }
+
+    /* ---------- KONTEN & BRAND ---------- */
+    .cb-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .cb-card {
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      padding: 28px;
+      transition: transform .25s ease;
+      border-radius: var(--radius);
+    }
+
+    .cb-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    .cb-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .cb-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .cb-desc {
+      color: var(--ink-soft);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .cb-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--red);
+    }
+
+    .logo-showcase {
+      border-radius: var(--radius);
+    }
+
+    .logo-showcase>div:first-child {
+      border-radius: var(--radius) 0 0 var(--radius);
+    }
+
+    .logo-showcase>div:last-child {
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .villa-icon {
+      border-radius: var(--radius-sm);
+    }
+
+    .reel-list-head {
+      margin-top: 60px;
+      margin-bottom: 24px;
+    }
+
+    .reel-list-head h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: 22px;
+    }
+
+    .reel-list-head p {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+
+    .reel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .reel-card {
+      display: block;
+      aspect-ratio: 9/14;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      text-decoration: none;
+      background: linear-gradient(160deg, var(--teal) 0%, var(--ink) 100%);
+      transition: transform .25s ease;
+      border-radius: var(--radius);
+    }
+
+    .reel-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .reel-card .reel-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(239, 233, 220, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reel-card .reel-play::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 12px solid var(--ink);
+      margin-left: 2px;
+    }
+
+    .reel-card .reel-label {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--paper);
+    }
+
+    .reel-card .reel-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--red);
+      color: var(--paper);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      padding: 4px 8px;
+      transform: rotate(-2deg);
+      border-radius: var(--radius-sm);
+    }
+
+    /* ---------- PRESTASI ---------- */
+    .achieve-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 26px;
+    }
+
+    .achieve-card {
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .achieve-card::before {
+      content: "";
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, var(--amber) 0%, transparent 70%);
+      opacity: 0.6;
+    }
+
+    .achieve-medal {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      background: var(--red);
+      color: var(--paper);
+      padding: 5px 10px;
+      display: inline-block;
+      margin-bottom: 16px;
+      border-radius: var(--radius-sm);
+    }
+
+    .achieve-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .achieve-desc {
+      color: var(--ink-soft);
+      font-size: 14px;
+      max-width: 40ch;
+    }
+
+    /* ---------- SKILLS ---------- */
+    .skills {
+      background: var(--ink);
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .skill-col h3 {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--red);
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      border: 1.5px solid var(--ink);
+      padding: 6px 12px;
+      background: var(--paper);
+      transition: transform .2s ease;
+      border-radius: var(--radius-sm);
+    }
+
+    .skill-tag:hover {
+      transform: translateY(-2px);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    /* ---------- PENDIDIKAN ---------- */
+    .edu-row {
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 26px 0;
+      border-bottom: 1.5px solid var(--line);
+    }
+
+    .edu-row:first-child {
+      border-top: 1.5px solid var(--line);
+    }
+
+    .edu-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--red);
+    }
+
+    .edu-name {
+      font-family: 'Anton', sans-serif;
+      font-size: 19px;
+    }
+
+    .edu-detail {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .edu-gpa {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      text-align: right;
+    }
+
+    /* ---------- KONTAK / BACKSTAGE PASS ---------- */
+    .contact {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .contact .eyebrow {
+      color: var(--teal);
+    }
+
+    .contact .eyebrow::before {
+      background: var(--amber);
+    }
+
+    .contact-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .contact-head h2 {
+      color: var(--ink);
+      font-size: clamp(32px, 5.5vw, 54px);
+      max-width: 560px;
+    }
+
+    .pass {
+      width: 320px;
+      background: var(--paper);
+      color: var(--ink);
+      border: 3px solid var(--paper);
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .pass-strap {
+      height: 30px;
+      background: repeating-linear-gradient(45deg, var(--red), var(--red) 10px, var(--amber) 10px, var(--amber) 20px);
+    }
+
+    .pass-hole {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--ink);
+      margin: 14px auto -6px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 0 4px var(--paper);
+    }
+
+    .pass-body {
+      padding: 26px 24px 24px;
+      text-align: center;
+    }
+
+    .pass-avatar {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 16px;
+      background: linear-gradient(150deg, var(--teal), var(--ink));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Anton', sans-serif;
+      font-size: 30px;
+      color: var(--paper);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+    }
+
+    .pass-name {
+      font-family: 'Anton', sans-serif;
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    .pass-role {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--red);
+      margin-bottom: 18px;
+    }
+
+    .pass-line {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      padding: 10px 0;
+      border-top: 1px dashed var(--line);
+      text-align: left;
+    }
+
+    .pass-line a:hover {
+      color: var(--red);
+    }
+
+    .pass-footer {
+      margin-top: 14px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--ink-soft);
+      border-top: 1.5px solid var(--ink);
+      padding-top: 10px;
+    }
+
+    footer {
+      background: var(--paper);
+      color: var(--ink-soft);
+      border-top: 2px solid var(--ink);
+      padding: 26px 0;
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ---------- SOCIAL ICONS ---------- */
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      color: var(--ink);
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .social-icons a svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .social-icons a:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: var(--paper);
+      transform: rotate(-6deg) scale(1.08);
+    }
+
+    footer .social-icons a {
+      border-color: var(--paper-alt);
+      color: var(--paper-alt);
+    }
+
+    footer .social-icons a:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: var(--paper);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .nav-toggle {
+        display: flex;
+      }
+
+      .header-social {
+        display: none;
+      }
+
+      /* mobile dropdown menu */
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--paper);
+        border-bottom: 2px solid var(--ink);
+        padding: 18px 24px 26px;
+        gap: 4px;
+        transform: translateY(-130%);
+        transition: transform .3s ease;
+        box-shadow: 0 12px 24px rgba(27, 27, 25, 0.18);
+        z-index: 105;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        padding: 12px 4px;
+        font-size: 16px;
+        border-bottom: 1px solid var(--line);
+        display: block;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hero-main {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .profile-photo-card {
+        width: min(240px, 70vw);
+        margin: 0 auto;
+        order: -1;
+      }
+
+      .about-grid,
+      .music-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .stat-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .achieve-grid,
+      .skills-grid,
+      .cb-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reel-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .logo-showcase {
+        grid-template-columns: 1fr !important;
+      }
+
+      .logo-showcase>div:first-child {
+        min-height: 200px !important;
+        border-right: none !important;
+        border-bottom: 2px solid var(--ink);
+      }
+
+      .logo-showcase>div:first-child {
+        border-radius: var(--radius) var(--radius) 0 0 !important;
+      }
+
+      .logo-showcase>div:last-child {
+        border-radius: 0 0 var(--radius) var(--radius) !important;
+      }
+
+      .badge-card {
+        grid-template-columns: 110px 1fr;
+      }
+
+      .mini-row {
+        grid-template-columns: 56px 1fr auto;
+      }
+
+      .mini-chip {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wrap {
+        padding: 0 20px;
+      }
+
+      .edu-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .edu-gpa {
+        text-align: left;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .badge-card {
+        grid-template-columns: 1fr;
+      }
+
+      .badge-side {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .mini-row {
+        grid-template-columns: 1fr;
+        row-gap: 4px;
+      }
+
+      .hero-name {
+        font-size: clamp(44px, 18vw, 70px);
+      }
+
+      .hero {
+        padding-top: 96px;
+        padding-bottom: 56px;
+      }
+
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .hero-actions .btn {
+        flex: 1 1 100%;
+        justify-content: center;
+      }
+
+      .stat-strip .num {
+        font-size: 24px;
+      }
+
+      .stat-strip .stat {
+        padding: 18px 14px;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      /* villa project card: stack icon above text */
+      .villa-card {
+        grid-template-columns: 1fr !important;
+        text-align: left;
+      }
+
+      /* overflow safety: prevent horizontal scroll from rotated cards etc. */
+      .reel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pass {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .content-thumb {
+        width: 52px;
+        height: 52px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero-actions .btn {
+        padding: 14px 16px;
+        font-size: 12px;
+      }
+
+      .hero-tag-strip {
+        gap: 8px;
+      }
+
+      .pill {
+        font-size: 11px;
+        padding: 6px 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="wrap">
+      <div class="logo-mark"><span class="dot"></span> DIKI MAHAPUTRA</div>
+      <div class="nav-links">
+        <a href="#tentang">Tentang</a>
+        <a href="#pengalaman">Pengalaman</a>
+        <a href="#musik">Musik</a>
+        <a href="#konten-brand">Kreatif</a>
+        <a href="#prestasi">Prestasi</a>
+        <a href="#skills">Skills</a>
+        <a href="image/CV_Diki_Mahaputra.pdf" target="_blank">Lihat CV</a>
+      </div>
+      <div class="social-icons header-social">
+        <a href="https://www.instagram.com/dimaharaa?igsh=M3gzbWowa21xc2N1&utm_source=qr" target="_blank"
+          rel="noopener" aria-label="Instagram Diki Mahaputra">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 2c-2.72 0-3.06.01-4.12.06-1.06.05-1.79.22-2.43.47a4.9 4.9 0 0 0-1.77 1.15A4.9 4.9 0 0 0 2.53 5.45c-.25.64-.42 1.37-.47 2.43C2.01 8.94 2 9.28 2 12s.01 3.06.06 4.12c.05 1.06.22 1.79.47 2.43.26.66.6 1.22 1.15 1.77.55.55 1.11.9 1.77 1.15.64.25 1.37.42 2.43.47C8.94 21.99 9.28 22 12 22s3.06-.01 4.12-.06c1.06-.05 1.79-.22 2.43-.47a4.9 4.9 0 0 0 1.77-1.15c.55-.55.9-1.11 1.15-1.77.25-.64.42-1.37.47-2.43.05-1.06.06-1.4.06-4.12s-.01-3.06-.06-4.12c-.05-1.06-.22-1.79-.47-2.43a4.9 4.9 0 0 0-1.15-1.77A4.9 4.9 0 0 0 18.55 2.53c-.64-.25-1.37-.42-2.43-.47C15.06 2.01 14.72 2 12 2zm0 1.8c2.67 0 2.99.01 4.04.06.98.04 1.51.21 1.86.34.47.18.8.4 1.15.75.35.35.57.68.75 1.15.13.35.3.88.34 1.86.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.04.98-.21 1.51-.34 1.86-.18.47-.4.8-.75 1.15-.35.35-.68.57-1.15.75-.35.13-.88.3-1.86.34-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-.98-.04-1.51-.21-1.86-.34a3.1 3.1 0 0 1-1.15-.75 3.1 3.1 0 0 1-.75-1.15c-.13-.35-.3-.88-.34-1.86-.05-1.05-.06-1.37-.06-4.04s.01-2.99.06-4.04c.04-.98.21-1.51.34-1.86.18-.47.4-.8.75-1.15.35-.35.68-.57 1.15-.75.35-.13.88-.3 1.86-.34C9.01 3.81 9.33 3.8 12 3.8zm0 3.06a5.14 5.14 0 1 0 0 10.28 5.14 5.14 0 0 0 0-10.28zm0 8.48a3.34 3.34 0 1 1 0-6.68 3.34 3.34 0 0 1 0 6.68zm6.54-8.68a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z" />
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com/@dikemmm?_r=1&_t=ZS-98M1sSKpT1u" target="_blank" rel="noopener"
+          aria-label="TikTok Diki Mahaputra">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.62h-3.34v13.5c0 1.66-1.35 3-3 3a3 3 0 0 1-1.6-5.55 3 3 0 0 1 1.6-.45c.28 0 .55.03.8.1v-3.4a6.3 6.3 0 0 0-.8-.05 6.3 6.3 0 1 0 6.3 6.3V9.03a9.1 9.1 0 0 0 5.3 1.7V7.4a5.6 5.6 0 0 1-3.86-1.58z" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/d-mahaputra-357745393?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+          target="_blank" rel="noopener" aria-label="LinkedIn Diki Mahaputra">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
+          </svg>
+        </a>
+      </div>
+      <a href="#kontak" class="nav-cta">Hubungi →</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-main">
+        <div>
+          <div class="hero-tag-strip">
+            <span class="pill role">EVENT ORGANIZER</span>
+            <span class="pill">DIGITAL MARKETER</span>
+            <span class="pill">CONTENT CREATOR</span>
+            <span class="pill">PENULIS</span>
+            <span class="pill">BRAND STRATEGIST</span>
+            <span class="pill">GITARIS &amp; BASSIS</span>
+            <span class="pill">PEMAIN FUTSAL</span>
+          </div>
+
+          <h1 class="hero-name">
+            <span class="offset-text" data-text="DIKI">DIKI</span><br>
+            <span class="offset-text teal" data-text="MAHAPUTRA">MAHAPUTRA</span>
+          </h1>
+          <div class="hero-subtitle mono">BACHELOR OF HUMANITIES</div>
+        </div>
+
+        <div class="profile-photo-card reveal">
+          <div class="profile-photo" style="background-image:url('image/foto profil diki.jpg');"></div>
+          <div class="profile-badge">★ FOTO PROFIL</div>
+          <div class="profile-caption mono">JATINANGOR · INDONESIA</div>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <p class="hero-desc">
+          Lulusan Sastra Sunda Universitas Padjadjaran dengan jangkauan kerja yang luas —
+          mengurus perizinan dan sponsor event, meracik strategi digital marketing
+          sampai naik ke panggung sebagai
+          gitaris sekaligus bassist, dan turun ke lapangan futsal sebagai pencetak gol.
+        </p>
+        <div class="hero-actions">
+          <a href="#pengalaman" class="btn btn-solid">Lihat Pengalaman</a>
+          <a href="image/CV_Diki_Mahaputra.pdf" target="_blank" class="btn btn-outline">Lihat CV</a>
+          <a href="#kontak" class="btn btn-outline">Hubungi Saya</a>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat">
+          <div class="num">3.65</div>
+          <div class="label">IPK / 4.00</div>
+        </div>
+        <div class="stat">
+          <div class="num">7+</div>
+          <div class="label">Event &amp; Organisasi</div>
+        </div>
+        <div class="stat">
+          <div class="num">01</div>
+          <div class="label">Album Band Dirilis</div>
+        </div>
+        <div class="stat">
+          <div class="num">TOP</div>
+          <div class="label">Skor Futsal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TENTANG ================= -->
+  <section class="about" id="tentang">
+    <div class="wrap about-grid">
+      <div class="about-text reveal">
+        <div class="eyebrow">001 — Tentang</div>
+        <h2 style="font-size:32px; margin-bottom:20px;">Dari Ruang Rapat ke Atas Panggung</h2>
+        <p>Saya lulusan Sastra Sunda Universitas Padjadjaran dengan
+          pengalaman menyeluruh di Event Organizing, Digital Marketing, dan
+          mengelola operasional bisnis.</p>
+        <p>Kompetensi inti saya ada di Copywriting, Social Media Management, dan
+          Administrasi Operasional. Saya dikenal sebagai inisiator yang mampu
+          memimpin tim, merancang strategi event, dan beradaptasi cepat dari
+          tahap perencanaan hingga eksekusi di lapangan.</p>
+        <p>Di luar kerja formal, energi yang sama saya bawa ke musik dan olahraga:
+          aktif di beberapa band, punya album rilisan sendiri, rutin membuat
+          konten cover gitar di Instagram dan TikTok, serta bermain futsal
+          secara kompetitif.</p>
+      </div>
+      <div class="quickfacts reveal">
+        <div class="fact-row"><span>Lokasi</span><span>Jatinangor, Sumedang, Indonesia</span></div>
+        <div class="fact-row"><span>Studi</span><span>Sastra Sunda, Universitas Padjadjaran</span></div>
+        <div class="fact-row"><span>IPK</span><span>3.65 / 4.00</span></div>
+        <div class="fact-row"><span>Fokus Kerja</span><span>Event Organizing &amp; Digital Marketing</span></div>
+        <div class="fact-row"><span>Musik</span><span>Gitaris &amp; bassist, aktif di beberapa band</span></div>
+        <div class="fact-row"><span>Olahraga</span><span>Futsal — juara &amp; top skor</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PENGALAMAN ================= -->
+  <section id="pengalaman" class="ol tint-paper-dark">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">002 — Pengalaman</div>
+          <h2>Kerja &amp; Organisasi</h2>
+        </div>
+        <div class="section-num">2022 → 2026</div>
+      </div>
+
+      <div class="badge-list">
+
+        <div class="badge-card reveal">
+          <div class="badge-side">
+            <span class="cat cat-kerja">KERJA</span>
+            <span class="dates">AGU 2024 – FEB 2026</span>
+            <span class="badge-punch"></span>
+          </div>
+          <div class="badge-main">
+            <div class="badge-role">Social Media Marketing</div>
+            <div class="badge-org">PT. Angin Segar Indonesia — Jatinangor</div>
+            <ul>
+              <li>Mengelola konten dan strategi engagement media sosial.</li>
+              <li>Menjalankan kampanye iklan berbayar via Meta Ads Manager, mengoptimalkan target audiens untuk
+                meningkatkan penjualan dan jangkauan brand.</li>
+              <li>Membuat aset visual iklan menggunakan Canva.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="badge-card reveal">
+          <div class="badge-side">
+            <span class="cat cat-kerja">KERJA</span>
+            <span class="dates">DES 2023 – MEI 2025</span>
+            <span class="badge-punch"></span>
+          </div>
+          <div class="badge-main">
+            <div class="badge-role">Admission Staff</div>
+            <div class="badge-org">Jatinangor National Park — Jatinangor</div>
+            <ul>
+              <li>Memverifikasi tiket pengunjung di pintu masuk untuk memastikan keabsahan akses.</li>
+              <li>Mengelola alur kerumunan dan antrean secara efisien saat jam sibuk.</li>
+              <li>Memberi arahan dan bantuan kepada pengunjung terkait aturan masuk.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="badge-card reveal">
+          <div class="badge-side">
+            <span class="cat cat-organisasi">ORGANISASI</span>
+            <span class="dates">SEPT – NOV 2024</span>
+            <span class="badge-punch"></span>
+          </div>
+          <div class="badge-main">
+            <div class="badge-role">Head of Public Relations</div>
+            <div class="badge-org">Nuance.EO — Jatinangor</div>
+            <ul>
+              <li>Memimpin divisi PR untuk "Safari Gigs", roadshow 7 minggu bekerja sama dengan Djarum Super.</li>
+              <li>Mengurus izin dan lisensi venue di 7 lokasi, bernegosiasi dengan pemilik tempat dan otoritas lokal.
+              </li>
+              <li>Mengelola relasi eksternal dengan komunitas lokal dan media partner untuk mendorong kehadiran audiens.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="badge-card reveal">
+          <div class="badge-side">
+            <span class="cat cat-organisasi">ORGANISASI</span>
+            <span class="dates">MEI – SEPT 2024</span>
+            <span class="badge-punch"></span>
+          </div>
+          <div class="badge-main">
+            <div class="badge-role">Head of Arts &amp; Culture Division</div>
+            <div class="badge-org">Opera Budaya 2024, Faculty Student Orientation — Jatinangor</div>
+            <ul>
+              <li>Merancang dan memproduksi pertunjukan seni: teater, band musik, dan seni tradisional Sunda.</li>
+              <li>Mengarahkan dan memberdayakan anggota divisi internal sebagai talent utama, mengawasi latihan dan
+                persiapan.</li>
+              <li>Mengelola seluruh produksi panggung, memastikan koordinasi mulus antara cast internal dan kru teknis.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="badge-card reveal">
+          <div class="badge-side">
+            <span class="cat cat-organisasi">ORGANISASI</span>
+            <span class="dates">JAN 2024 – JAN 2025</span>
+            <span class="badge-punch"></span>
+          </div>
+          <div class="badge-main">
+            <div class="badge-role">Vice Head of Internal Affairs Bureau</div>
+            <div class="badge-org">Paguyuban Mahasiswa Sastra Sunda — Jatinangor</div>
+            <ul>
+              <li>Membangun solidaritas antaranggota lewat kegiatan bonding internal dan resolusi konflik.</li>
+              <li>Mengelola aset organisasi dan operasional harian sekretariat.</li>
+              <li>Membantu Kepala Biro mengawasi kinerja staf dan menjaga budaya organisasi yang positif.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="badge-card reveal">
+          <div class="badge-side">
+            <span class="cat cat-organisasi">ORGANISASI</span>
+            <span class="dates">FEB 2023 – OKT 2024</span>
+            <span class="badge-punch"></span>
+          </div>
+          <div class="badge-main">
+            <div class="badge-role">Project Leader / Chairperson</div>
+            <div class="badge-org">Pesta Tahunan Cipajaran — Jatinangor</div>
+            <ul>
+              <li>Memimpin seluruh siklus proyek, mengawasi perencanaan strategis dari pre-event series hingga main
+                event.</li>
+              <li>Mengelola timeline multi-fase, menjaga performa tim dan engagement audiens tetap konsisten.</li>
+              <li>Mengawasi seluruh divisi fungsional untuk memastikan koordinasi dan eksekusi festival berjalan mulus.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="badge-card reveal">
+          <div class="badge-side">
+            <span class="cat cat-organisasi">ORGANISASI</span>
+            <span class="dates">FEB – NOV 2023</span>
+            <span class="badge-punch"></span>
+          </div>
+          <div class="badge-main">
+            <div class="badge-role">Vice Chairman of Event Division</div>
+            <div class="badge-org">Puncak Poean Pamass 2023 — Jatinangor</div>
+            <ul>
+              <li>Mengatur kampanye PR untuk seluruh rangkaian event (pre-event &amp; main event), berhasil melibatkan
+                alumni dan sponsor.</li>
+              <li>Mengurus izin venue dan kepatuhan administratif lokasi acara.</li>
+              <li>Berperan sebagai Liaison Officer (LO) pada hari-H, memastikan koordinasi dan keramahtamahan untuk
+                VIP/performer.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="badge-card reveal">
+          <div class="badge-side">
+            <span class="cat cat-organisasi">ORGANISASI</span>
+            <span class="dates">AGU 2022 – MAR 2023</span>
+            <span class="badge-punch"></span>
+          </div>
+          <div class="badge-main">
+            <div class="badge-role">Internal Affairs Staff</div>
+            <div class="badge-org">BEM KEMA UNPAD — Jatinangor</div>
+            <ul>
+              <li>Menjalankan roadshow "Safari Campus", melakukan kunjungan dan studi banding ke seluruh fakultas dan
+                UKM di Universitas Padjadjaran.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mini-list-head reveal">
+        <h3>Kepengurusan Organisasi Lainnya</h3>
+        <p>POSISI TETAP DI LUAR PENGALAMAN UTAMA</p>
+      </div>
+      <div class="mini-list">
+        <div class="mini-row reveal">
+          <span class="mini-year">2022–23</span>
+          <span class="mini-name">BEM KEMA Unpad — Kabinet Garis Depan</span>
+          <span class="mini-role">Staff Hubungan Internal</span>
+          <span class="mini-chip chip-organisasi">ORGANISASI</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2022–23</span>
+          <span class="mini-name">Ais Pangampih PAMASS — Kabinet Gama Bramantya</span>
+          <span class="mini-role">Staff Biro Rumah Tangga</span>
+          <span class="mini-chip chip-organisasi">ORGANISASI</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2023–24</span>
+          <span class="mini-name">Ais Pangampih PAMASS — Kabinet Wirasena</span>
+          <span class="mini-role">Wakil Kepala Biro Rumah Tangga</span>
+          <span class="mini-chip chip-organisasi">ORGANISASI</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2024–25</span>
+          <span class="mini-name">Federasi Sepak Bola Sastra Universitas Padjadjaran</span>
+          <span class="mini-role">Wakil Ketua</span>
+          <span class="mini-chip chip-organisasi">ORGANISASI</span>
+        </div>
+      </div>
+
+      <div class="mini-list-head reveal">
+        <h3>Kepanitiaan Event</h3>
+        <p>KETERLIBATAN SEBAGAI PANITIA PENYELENGGARA</p>
+      </div>
+      <div class="mini-list">
+        <div class="mini-row reveal">
+          <span class="mini-year">2022</span>
+          <span class="mini-name">Syukuran Angkatan Sastra Sunda 2022</span>
+          <span class="mini-role">Ketua Pelaksana</span>
+          <span class="mini-chip chip-kepanitiaan">PANITIA</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2022</span>
+          <span class="mini-name">PPU PAMASS 2022</span>
+          <span class="mini-role">Staff Divisi Acara</span>
+          <span class="mini-chip chip-kepanitiaan">PANITIA</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2023</span>
+          <span class="mini-name">Opera Budaya 2023</span>
+          <span class="mini-role">Staff Divisi Kandaya</span>
+          <span class="mini-chip chip-kepanitiaan">PANITIA</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2023</span>
+          <span class="mini-name">PPU PAMASS 2023</span>
+          <span class="mini-role">Staff Divisi Logistik</span>
+          <span class="mini-chip chip-kepanitiaan">PANITIA</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2023</span>
+          <span class="mini-name">Pesta Tahunan Cipajaran</span>
+          <span class="mini-role">Ketua Pelaksana</span>
+          <span class="mini-chip chip-kepanitiaan">PANITIA</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2023</span>
+          <span class="mini-name">Hari-Hari Sastra</span>
+          <span class="mini-role">Staff Divisi LO</span>
+          <span class="mini-chip chip-kepanitiaan">PANITIA</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2023</span>
+          <span class="mini-name">Puncak Poe Pamass</span>
+          <span class="mini-role">Ketua Divisi LO</span>
+          <span class="mini-chip chip-kepanitiaan">PANITIA</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2024</span>
+          <span class="mini-name">Layanan Berhenti Nge-Gigs</span>
+          <span class="mini-role">Ketua Divisi Humas</span>
+          <span class="mini-chip chip-kepanitiaan">PANITIA</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2024</span>
+          <span class="mini-name">Opera Budaya 2024</span>
+          <span class="mini-role">Ketua Divisi Kandaya</span>
+          <span class="mini-chip chip-kepanitiaan">PANITIA</span>
+        </div>
+        <div class="mini-row reveal">
+          <span class="mini-year">2024</span>
+          <span class="mini-name">Mabim Sabilulungan 2024</span>
+          <span class="mini-role">Staff Divisi PDD</span>
+          <span class="mini-chip chip-kepanitiaan">PANITIA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MUSIK & KONTEN ================= -->
+  <section class="music ol tint-amber" id="musik">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">003 — Musik &amp; Konten</div>
+          <h2 style="color:var(--ink);">Panggung &amp; Layar</h2>
+        </div>
+        <div class="section-num" style="color:var(--ink-soft);">COVER &amp; KARYA</div>
+      </div>
+
+      <div class="music-grid">
+        <div class="album-card reveal">
+          <div class="album-art"
+            style="background-image:url('image/the-east-album.png'); background-size:cover; background-position:center;">
+          </div>
+          <div class="album-title">Dreaming of Greenfields — The East</div>
+          <div class="album-meta">ALBUM PENUH · BASSIS &amp; PENULIS LAGU</div>
+          <p style="margin-top:14px; color:var(--ink-soft); font-size:14px;">
+            Aktif di beberapa band sekaligus, salah satunya sudah merilis album
+            penuh. Berperan sebagai bassist sekaligus ikut dalam proses penulisan
+            materi — meski juga bisa bermain gitar.
+          </p>
+        </div>
+
+        <div class="content-list reveal">
+
+          <a href="https://www.instagram.com/reel/DOioc1PiefUBeZmfudgx33C8B6lu58uY-hqZWk0/?igsh=emIyZXlwd2VlamNh" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
+            <div class="content-item" style="cursor:pointer;">
+              <div class="content-thumb"></div>
+              <div class="content-text">
+                <div class="title">Tabola Bale Versi Pop Punk Cover</div>
+                <div class="meta">🎸 COVER · Tonton di Instagram</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/reel/DTF4IJSiYqCfcfqbEgHIzPoeSrBZDnM2POAIC80/?igsh=MWNiNmNnY3drOW5obg==" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
+            <div class="content-item" style="cursor:pointer;">
+              <div class="content-thumb"></div>
+              <div class="content-text">
+                <div class="title">Egosentris - Alkateri Cover</div>
+                <div class="meta">🎸 COVER · Tonton di Instagram</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/reel/DV6WnueCdWPfacn81XWjOxWDSJmN-XNi7QHn940/?igsh=MTh1bmxqaWZhb2xpNg==" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
+            <div class="content-item" style="cursor:pointer;">
+              <div class="content-thumb"></div>
+              <div class="content-text">
+                <div class="title">Smashing Pumpkins - 1979 Cover</div>
+                <div class="meta">🎸 COVER · Tonton di Instagram</div>
+              </div>
+            </div>
+          </a>
+
+          <div style="border-top: 1.5px solid rgba(239,233,220,0.25); margin: 10px 0 8px 0;"></div>
+
+          <div class="own-song-label">🎵 LAGU CIPTAAN SENDIRI</div>
+
+          <div class="video-cover-item" onclick="playVideo(this)">
+            <div class="content-item" style="cursor:pointer;">
+              <div class="content-thumb" style="background:linear-gradient(150deg, var(--teal), var(--ink));"></div>
+              <div class="content-text">
+                <div class="title">Produksi FL Studio — Belum Dirilis</div>
+                <div class="meta">✍️ KARYA SENDIRI · Klik untuk putar</div>
+              </div>
+            </div>
+            <video class="video-player"
+              src="image/Lagu Produksian Saya Sendiri Menggunakan FL Studio dan Belum Saya Rilis.mov" controls
+              preload="none"></video>
+          </div>
+
+          <a href="https://www.tiktok.com/@dikemmm?_r=1&_t=ZS-98M1sSKpT1u" target="_blank" class="btn btn-outline"
+            style="border-color:var(--ink); color:var(--ink); align-self:flex-start; margin-top:16px;">Lihat Semua
+            di TikTok</a>
+        </div>
+
+        <!-- POLAROID GALLERY -->
+        <div class="polaroid-gallery reveal">
+          <div class="eyebrow">Album Foto — Gitar &amp; Bass</div>
+          <div class="polaroid-grid">
+            <div class="polaroid-card">
+              <div class="polaroid-img" style="background-image:url('image/album foto 1.JPG');"></div>
+              <div class="polaroid-caption">ALBUM FOTO 1</div>
+            </div>
+            <div class="polaroid-card">
+              <div class="polaroid-img" style="background-image:url('image/album foto 2.jpg');"></div>
+              <div class="polaroid-caption">ALBUM FOTO 2</div>
+            </div>
+            <div class="polaroid-card">
+              <div class="polaroid-img" style="background-image:url('image/album foto 3.JPG');"></div>
+              <div class="polaroid-caption">ALBUM FOTO 3</div>
+            </div>
+            <div class="polaroid-card">
+              <div class="polaroid-img" style="background-image:url('image/album foto 4.JPG');"></div>
+              <div class="polaroid-caption">ALBUM FOTO 4</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POLAROID GALLERY — KEGIATAN KAMPUS -->
+        <div class="polaroid-gallery reveal">
+          <div class="eyebrow" style="color:var(--teal);">Album Foto — Kegiatan Kampus</div>
+          <div class="polaroid-grid">
+            <div class="polaroid-card">
+              <div class="polaroid-img"
+                style="background-image:url('image/Studi Banding X Universitas Indonesia.jpg');">
+              </div>
+              <div class="polaroid-caption">STUDI BANDING X UI</div>
+            </div>
+            <div class="polaroid-card">
+              <div class="polaroid-img" style="background-image:url('image/Paguyuban Mahasiswa Sastra Sunda.jpg');">
+              </div>
+              <div class="polaroid-caption">PAGUYUBAN MAHASISWA SASTRA SUNDA</div>
+            </div>
+            <div class="polaroid-card">
+              <div class="polaroid-img" style="background-image:url('image/Opera Budaya.jpg');"></div>
+              <div class="polaroid-caption">OPERA BUDAYA</div>
+            </div>
+            <div class="polaroid-card">
+              <div class="polaroid-img" style="background-image:url('image/bem kema.jpg');"></div>
+              <div class="polaroid-caption">BEM KEMA UNPAD</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- ================= KONTEN & BRAND ================= -->
+  <section id="konten-brand" class="ol tint-teal on-dark">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">004 — Kreatif &amp; Brand</div>
+          <h2>Di Luar Panggung Event</h2>
+        </div>
+        <div class="section-num">KONTEN / TULISAN / BRAND</div>
+      </div>
+
+      <div class="cb-grid">
+        <div class="cb-card reveal">
+          <div class="cb-icon">CC</div>
+          <div class="cb-title">Content Creator</div>
+          <p class="cb-desc">Membuat konten secara konsisten di Instagram dan TikTok, mulai dari cover gitar sampai
+            dokumentasi kegiatan event dan band.</p>
+          <div class="cb-meta"><a href="https://www.tiktok.com/@dikemmm?_r=1&_t=ZS-98M1sSKpT1u" target="_blank"
+              style="color:inherit;">@DIKEMMM · TIKTOK</a></div>
+        </div>
+        <div class="cb-card reveal">
+          <div class="cb-icon">MD</div>
+          <div class="cb-title">Penulis</div>
+          <p class="cb-desc">Aktif menulis di Medium — salah satunya esai "Monolog Pecundang di Atas Panggung",
+            menuangkan gagasan lewat esai dan tulisan reflektif di luar tugas akademik.</p>
+          <div class="cb-meta"><a
+              href="https://medium.com/@dikimahaputraa/monolog-pecundang-di-atas-panggung-dfc9b22d02e9" target="_blank"
+              style="color:inherit;">BACA DI MEDIUM →</a></div>
+        </div>
+        <div class="cb-card reveal">
+          <div class="cb-icon"
+            style="background-image:url('image/havo-syx-logo.jpg'); background-size:cover; background-position:center; background-color:transparent;">
+          </div>
+          <div class="cb-title">Brand Strategist &amp; Desainer Logo</div>
+          <p class="cb-desc">Merancang dan menjalankan strategi brand untuk usaha sendiri — dari positioning, identitas
+            visual, hingga logo buatan sendiri sebagai portofolio branding.</p>
+          <div class="cb-meta"><a target="_blank" style="color:inherit;">HAVO.SYX →</a></div>
+        </div>
+      </div>
+
+      <!-- PROJECT CARD: VILLA WEBSITE -->
+      <div class="cb-card villa-card reveal"
+        style="margin-top:40px; display:grid; grid-template-columns:auto 1fr; gap:28px; align-items:center; padding:32px;">
+        <div class="villa-icon"
+          style="width:80px; height:80px; background:var(--paper); border:2px solid var(--ink); display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; background-image:url('image/logo.PNG'); background-size:contain; background-position:center; background-repeat:no-repeat;">
+        </div>
+        <div>
+          <div class="cb-title" style="margin-bottom:6px;">Web Developer — Villa Website</div>
+          <p class="cb-desc" style="margin-bottom:10px;">Membangun website untuk villa Bumi Harian dari awal — desain
+            UI, pengembangan front-end, hingga deployment. Website ini bisa diakses langsung melalui tautan di bawah.
+          </p>
+          <div class="cb-meta"><a href="https://bit.ly/BumiHarian" target="_blank"
+              style="color:inherit;">bit.ly/BumiHarian →</a></div>
+        </div>
+      </div>
+
+      <!-- LOGO HAVO.SYX SHOWCASE -->
+      <div class="logo-showcase reveal"
+        style="margin-top:60px; border:2px solid var(--ink); background:var(--paper); padding:0; display:grid; grid-template-columns:1fr 1.2fr; overflow:hidden;">
+        <div
+          style="background-image:url('image/havo-syx-logo.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat; min-height:280px; border-right:2px solid var(--ink);">
+        </div>
+        <div style="padding:36px 34px; display:flex; flex-direction:column; justify-content:center;">
+          <span class="eyebrow" style="margin-bottom:12px;">DESAIN SENDIRI</span>
+          <h3
+            style="font-family:'Anton',sans-serif; font-size:28px; text-transform:uppercase; letter-spacing:0.01em; margin-bottom:8px;">
+            Logo Havo.SYX</h3>
+          <p style="color:var(--ink-soft); font-size:15px; line-height:1.7; max-width:40ch;">
+            Logo ini saya desain sendiri untuk brand pribadi — mencerminkan identitas visual
+            yang kuat, modern, dan berkarakter. Proses desain meliputi riset konsep, sketsa,
+            digitalisasi, hingga pemilihan warna dan tipografi yang tepat.
+          </p>
+          <div
+            style="margin-top:18px; display:flex; gap:12px; font-family:'Space Mono',monospace; font-size:12px; color:var(--red);">
+            <span>▸ BRAND IDENTITY</span>
+            <span>▸ LOGO DESIGN</span>
+            <span>▸ VISUAL STRATEGY</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reel-list-head reveal">
+        <h3>Konten &amp; Talent — Video Unggulan</h3>
+        <p>PERNAH MENJADI TALENT KONTEN, SALAH SATU VIDEO TEMBUS 1JT+ VIEWERS</p>
+      </div>
+      <div class="reel-grid">
+        <a class="reel-card reveal" href="https://www.instagram.com/reel/DRMOt4OiRmX/?igsh=MWN0bGVnbGd5MW80dw=="
+          target="_blank">
+          <div class="reel-play"></div>
+          <div class="reel-label">Reel 01</div>
+        </a>
+        <a class="reel-card reveal" href="https://www.instagram.com/reel/DReP-NTif4w/?igsh=MTZxdzRpZnQ2MnU5MA=="
+          target="_blank">
+          <div class="reel-play"></div>
+          <div class="reel-label">Reel 02</div>
+        </a>
+        <a class="reel-card reveal" href="https://www.instagram.com/reel/DRmJjiriSjE/?igsh=cG0zMGl6cWtybDJw"
+          target="_blank">
+          <div class="reel-play"></div>
+          <div class="reel-label">Reel 03</div>
+        </a>
+        <a class="reel-card reveal" href="https://www.instagram.com/reel/DRotrn-CdkH/?igsh=bndld2x5eThoMGky"
+          target="_blank">
+          <div class="reel-play"></div>
+          <div class="reel-label">Reel 04</div>
+        </a>
+        <a class="reel-card reveal" href="https://www.instagram.com/reel/DRzTmzYicCf/?igsh=YnI5b24zMDljdjB6"
+          target="_blank">
+          <div class="reel-play"></div>
+          <div class="reel-label">Reel 05</div>
+        </a>
+        <a class="reel-card reveal" href="https://www.instagram.com/reel/DSE6UY2Cc-P/?igsh=MWw2anJ1cTlic3dpZQ=="
+          target="_blank">
+          <div class="reel-play"></div>
+          <div class="reel-label">Reel 06</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRESTASI ================= -->
+  <section id="prestasi" class="ol tint-red on-dark">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">005 — Prestasi</div>
+          <h2>Piala &amp; Panggung Juara</h2>
+        </div>
+        <div class="section-num">MUSIK / OLAHRAGA</div>
+      </div>
+
+      <div class="achieve-grid">
+        <div class="achieve-card reveal">
+          <span class="achieve-medal">JUARA 1</span>
+          <div class="achieve-title">Kompetisi Band Antar Jurusan</div>
+          <p class="achieve-desc">Meraih juara 1 bersama Senjakala dalam kompetisi band yang
+            diselenggarakan BEM Fakultas dan BEM Universitas Padjadjaran, tampil sebagai gitaris.</p>
+        </div>
+        <div class="achieve-card reveal">
+          <span class="achieve-medal">JUARA + TOP SKOR</span>
+          <div class="achieve-title">Turnamen Futsal Antar Jurusan</div>
+          <p class="achieve-desc">Membawa tim menjadi juara sekaligus dinobatkan sebagai pencetak gol terbanyak (top
+            scorer) pada turnamen yang diselenggarakan BEM Fakultas dan BEM Universitas Padjadjaran.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section class="skills ol tint-ink on-dark" id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">006 — Kemampuan</div>
+          <h2>Skills &amp; Tools</h2>
+        </div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-col reveal">
+          <h3>Hard Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Data Analysis</span>
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">Event Organizing</span>
+            <span class="skill-tag">Digital Marketing (Meta Ads)</span>
+            <span class="skill-tag">Copywriting</span>
+            <span class="skill-tag">Social Media Management</span>
+            <span class="skill-tag">Operational Administration</span>
+            <span class="skill-tag">Sponsorship &amp; Partnership</span>
+            <span class="skill-tag">Stage Production</span>
+            <span class="skill-tag">Permit &amp; Licensing</span>
+          </div>
+        </div>
+        <div class="skill-col reveal">
+          <h3>Soft Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Leadership</span>
+            <span class="skill-tag">Teamwork</span>
+            <span class="skill-tag">Strategic Planning</span>
+            <span class="skill-tag">Public Speaking</span>
+            <span class="skill-tag">Adaptability</span>
+            <span class="skill-tag">Networking</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Time Management</span>
+          </div>
+        </div>
+        <div class="skill-col reveal">
+          <h3>Software &amp; Lainnya</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">MS Excel</span>
+            <span class="skill-tag">MS PowerPoint</span>
+            <span class="skill-tag">MS Word</span>
+            <span class="skill-tag">Canva</span>
+            <span class="skill-tag">Meta Ads Manager</span>
+            <span class="skill-tag">FL Studio</span>
+            <span class="skill-tag">Gitar</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:70px;">
+        <div class="eyebrow reveal">007 — Pendidikan</div>
+        <div class="edu-row reveal">
+          <div class="edu-date">2022 – 2026</div>
+          <div>
+            <div class="edu-name">Universitas Padjadjaran</div>
+            <div class="edu-detail">Sastra Sunda (Humaniora) — Lulus (Bachelor of Humanities)</div>
+          </div>
+          <div class="edu-gpa">IPK 3.65 / 4.00</div>
+        </div>
+        <div class="edu-row reveal">
+          <div class="edu-date">2019 – 2022</div>
+          <div>
+            <div class="edu-name">SMA Negeri Jatinangor</div>
+            <div class="edu-detail">Ilmu Pengetahuan Sosial — Sumedang, Indonesia</div>
+          </div>
+          <div class="edu-gpa">89.00 / 100.00</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KONTAK ================= -->
+  <section class="contact ol tint-paper-dark" id="kontak">
+    <div class="wrap contact-wrap">
+      <div class="contact-head reveal">
+        <div class="eyebrow">008 — Kontak</div>
+        <h2>Butuh tim event, strategi<br>digital, konten, atau brand?</h2>
+      </div>
+
+      <div class="pass reveal">
+        <div class="pass-strap"></div>
+        <div class="pass-hole"></div>
+        <div class="pass-body">
+          <div class="pass-avatar"
+            style="background-image:url('image/foto profil diki.jpg'); background-size:cover; background-position:center;">
+          </div>
+          <div class="pass-name">DIKI MAHAPUTRA</div>
+          <div class="pass-role mono">AKSES BACKSTAGE — ALL AREA</div>
+          <div class="pass-line"><span>Email</span><a
+              href="mailto:mahaputradikii@gmail.com">mahaputradikii@gmail.com</a></div>
+          <div class="pass-line"><span>Telepon</span><a href="tel:081990053713">0819-9005-3713</a></div>
+          <div class="pass-line"><span>Instagram</span><a
+              href="https://www.instagram.com/dimaharaa?igsh=M3gzbWowa21xc2N1&utm_source=qr" target="_blank"
+              rel="noopener">@dimaharaa</a></div>
+          <div class="pass-line"><span>TikTok</span><a href="https://www.tiktok.com/@dikemmm?_r=1&_t=ZS-98M1sSKpT1u"
+              target="_blank" rel="noopener">@dikemmm</a></div>
+          <div class="pass-line"><span>LinkedIn</span><a
+              href="https://www.linkedin.com/in/d-mahaputra-357745393?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+              target="_blank" rel="noopener">Diki Mahaputra</a></div>
+          <div class="pass-line"><span>Lokasi</span><span>Jatinangor, Sumedang</span></div>
+          <div class="pass-footer">NO. 0001 · BERLAKU UNTUK KOLABORASI EVENT, MARKETING &amp; MUSIK</div>
+          <a href="image/CV_Diki_Mahaputra.pdf" target="_blank" class="btn btn-solid"
+            style="width:100%; justify-content:center; margin-top:16px;">Lihat CV Lengkap</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Diki Mahaputra</span>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/dimaharaa?igsh=M3gzbWowa21xc2N1&utm_source=qr" target="_blank"
+          rel="noopener" aria-label="Instagram Diki Mahaputra">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 2c-2.72 0-3.06.01-4.12.06-1.06.05-1.79.22-2.43.47a4.9 4.9 0 0 0-1.77 1.15A4.9 4.9 0 0 0 2.53 5.45c-.25.64-.42 1.37-.47 2.43C2.01 8.94 2 9.28 2 12s.01 3.06.06 4.12c.05 1.06.22 1.79.47 2.43.26.66.6 1.22 1.15 1.77.55.55 1.11.9 1.77 1.15.64.25 1.37.42 2.43.47C8.94 21.99 9.28 22 12 22s3.06-.01 4.12-.06c1.06-.05 1.79-.22 2.43-.47a4.9 4.9 0 0 0 1.77-1.15c.55-.55.9-1.11 1.15-1.77.25-.64.42-1.37.47-2.43.05-1.06.06-1.4.06-4.12s-.01-3.06-.06-4.12c-.05-1.06-.22-1.79-.47-2.43a4.9 4.9 0 0 0-1.15-1.77A4.9 4.9 0 0 0 18.55 2.53c-.64-.25-1.37-.42-2.43-.47C15.06 2.01 14.72 2 12 2zm0 1.8c2.67 0 2.99.01 4.04.06.98.04 1.51.21 1.86.34.47.18.8.4 1.15.75.35.35.57.68.75 1.15.13.35.3.88.34 1.86.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.04.98-.21 1.51-.34 1.86-.18.47-.4.8-.75 1.15-.35.35-.68.57-1.15.75-.35.13-.88.3-1.86.34-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-.98-.04-1.51-.21-1.86-.34a3.1 3.1 0 0 1-1.15-.75 3.1 3.1 0 0 1-.75-1.15c-.13-.35-.3-.88-.34-1.86-.05-1.05-.06-1.37-.06-4.04s.01-2.99.06-4.04c.04-.98.21-1.51.34-1.86.18-.47.4-.8.75-1.15.35-.35.68-.57 1.15-.75.35-.13.88-.3 1.86-.34C9.01 3.81 9.33 3.8 12 3.8zm0 3.06a5.14 5.14 0 1 0 0 10.28 5.14 5.14 0 0 0 0-10.28zm0 8.48a3.34 3.34 0 1 1 0-6.68 3.34 3.34 0 0 1 0 6.68zm6.54-8.68a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z" />
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com/@dikemmm?_r=1&_t=ZS-98M1sSKpT1u" target="_blank" rel="noopener"
+          aria-label="TikTok Diki Mahaputra">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.62h-3.34v13.5c0 1.66-1.35 3-3 3a3 3 0 0 1-1.6-5.55 3 3 0 0 1 1.6-.45c.28 0 .55.03.8.1v-3.4a6.3 6.3 0 0 0-.8-.05 6.3 6.3 0 1 0 6.3 6.3V9.03a9.1 9.1 0 0 0 5.3 1.7V7.4a5.6 5.6 0 0 1-3.86-1.58z" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/d-mahaputra-357745393?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+          target="_blank" rel="noopener" aria-label="LinkedIn Diki Mahaputra">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
+          </svg>
+        </a>
+      </div>
+      <span>Jatinangor, Sumedang, Indonesia</span>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- LENIS VELOCITY SMOOTH SCROLL ----------
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.4,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Keep reveal animations in sync with Lenis scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // Smooth-scroll nav anchors via Lenis
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId.length > 1) {
+          const target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            lenis.scrollTo(target, { offset: -70 });
+          }
+        }
+      });
+    });
+
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        navToggle.classList.toggle('open', isOpen);
+        navToggle.setAttribute('aria-expanded', isOpen);
+      });
+      // close menu when a link is clicked
+      navLinks.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+          navLinks.classList.remove('open');
+          navToggle.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    const roles = ["EVENT ORGANIZER", "DIGITAL MARKETER", "GITARIS & BASSIS", "PEMAIN FUTSAL"];
+    let ri = 0;
+    const rolePill = document.querySelector('.pill.role');
+    setInterval(() => {
+      ri = (ri + 1) % roles.length;
+      rolePill.style.opacity = 0;
+      setTimeout(() => {
+        rolePill.textContent = roles[ri];
+        rolePill.style.opacity = 1;
+      }, 200);
+    }, 2400);
+    rolePill.style.transition = 'opacity .2s ease';
+
+    function playVideo(el) {
+      const container = el.closest('.video-cover-item');
+      const video = container.querySelector('.video-player');
+
+      // Pause all other videos first
+      document.querySelectorAll('.video-cover-item.playing').forEach(item => {
+        if (item !== container) {
+          const otherVideo = item.querySelector('.video-player');
+          otherVideo.pause();
+          otherVideo.currentTime = 0;
+          item.classList.remove('playing');
+        }
+      });
+
+      if (container.classList.contains('playing')) {
+        // If already playing, toggle pause/play
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      } else {
+        container.classList.add('playing');
+        video.play();
+      }
+
+      // When video ends, remove playing state
+      video.onended = function () {
+        container.classList.remove('playing');
+      };
+    }
+  </script>
+
+</body>
+
+</html>
